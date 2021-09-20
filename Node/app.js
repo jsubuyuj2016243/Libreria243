@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 app.use('/api',
 user_rutes,);
 
+app.use(cors());
+
 
 module.exports = app;
-
-app.use(cors());
