@@ -2,12 +2,11 @@
 
 var jwt = require("jwt-simple");
 var moment = require("moment");
-var secret = 'admin';
+var secret = 'adminpractica';
 
 exports.ensureAuth = function (req,res,next){
     if(!req.headers.authorization){
-        return res.status(404).send({ report: 'is not authorized to do the action'});
-
+        return res.status(404).send({ report: 'No tienes autorización'});
     }
 
     var token = req.headers.authorization.replace(/['"']+/g,'');
@@ -16,10 +15,9 @@ exports.ensureAuth = function (req,res,next){
         var payload = jwt.decode(token,secret);
         
         if(payload.exp <= moment().unix()){
-            return res.status(200).send({ report: 'The token has expired'})
-        }
-    }catch(err){
-        return res.status(404).send({ report: 'The token its not valid'});
+            return res.status(200).send({ report: 'El token ha expirado'})
+        }}catch(err){
+        return res.status(404).send({ report: 'Token no válido'});
     }
 
     req.user = payload;
