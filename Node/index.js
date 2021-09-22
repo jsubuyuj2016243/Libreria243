@@ -14,11 +14,11 @@ mongoose.connect('mongodb://localhost:27017/librería', {useNewUrlParser:true, u
     var tipo = 'admin';
     var User = new userModel();
 
-    User.nickName = usuario;
+    User.usuario = usuario;
     User.tipo = tipo;
 
     userModel.find({ usuario : usuario }).exec((err,userFound)=>{
-        if(userFound && userFound.length >= 1) return console.log("Este usuario ya existe");
+        if(userFound && userFound.length >= 1) return console.log("Ya existe el usuario administrador");
 
         bcrypt.hash(password, null, null, (err, encryptedPasswords)=>{
             if(err) return console.log("error en la petición");

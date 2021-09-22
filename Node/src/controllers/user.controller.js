@@ -32,9 +32,12 @@ function Login(req, res) {
   }
 
 function crearUsuario(req, res) {
-    var type = req.params.type;
-    var params = req.body;
-    var userModel = new userModel();
+  var tipo = req.params.tipo;
+  var params = req.body;
+  var userModel = new userModel();
+  var type = req.user.tipo;
+  
+  if(type != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
   
     userModel.carnet = params.carnet;
     userModel.nombre = params.nombre;
@@ -62,7 +65,51 @@ function crearUsuario(req, res) {
     })
   }
 
+function mostrarUsuarios(req,res) {
+    var tipo = req.user.tipo;
+  
+   if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+    userModel.find({},(err,UserFound)=>{
+      if(err) return res.status(404).send({report:'Error al encontrar usuarios'});
+      return res.status(200).send(UserFound)
+    })
+  }
+
+function editarUsuario(req,res){
+    var idUser = req.params.idUser
+    var params = req.body
+    var tipo = req.user.tipo;
+  
+    if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+
+    userModel.findByIdAndUpdate(idUser,params,(err,userUpdated)=>{
+      if(err) return res.status(500).send({ report: 'Error en la petición' })
+      if(userUpdated == null) return res.status(500).send({ report: 'No se actualizo el usuario'})
+  
+      return res.status(200).send(userUpdated)
+    })
+  
+  }
+
+function eliminarUsuario(req,res){
+    var idUser = req.params.idUser
+    var tipo = req.user.tipo;
+  
+    if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+  
+    userModel.findByIdAndDelete(idUser, (err,userDeleted)=>{
+      if(err) return res.status(500).send({ report: 'Error en la petición' })
+      if(userDeleted == null) return res.status(500).send({ report: 'Error al eliminar el Usuario'})
+  
+      return res.status(200).send(userDeleted)
+    })
+  
+  }
+
   module.exports = {
       Login,
-      crearUsuario
+      crearUsuario,
+      mostrarUsuarios,
+      editarUsuario,
+      eliminarUsuario
   }
