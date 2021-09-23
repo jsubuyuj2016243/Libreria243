@@ -32,43 +32,43 @@ function Login(req, res) {
   }
 
 function crearUsuario(req, res) {
-  var tipo = req.params.tipo;
+  var type = req.params.tipo;
   var params = req.body;
-  var userModel = new userModel();
-  var type = req.user.tipo;
+  var UserModel = new userModel();
   
-  if(type != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+    if(type != admin){
   
-    userModel.carnet = params.carnet;
-    userModel.nombre = params.nombre;
-    userModel.apellido = params.apellido;
-    userModel.usuario = params.usuario;
-    userModel.correo = params.correo;
-    userModel.tipo = tipo;
+    UserModel.carnet = params.carnet;
+    UserModel.nombre = params.nombre;
+    UserModel.apellido = params.apellido;
+    UserModel.usuario = params.usuario;
+    UserModel.correo = params.correo;
+    UserModel.tipo = params.tipo;
   
   
     bcrypt.hash(params.password, null, null, (err, passwordEncriptada) => {
       if (err) return console.log("error en la petición");
   
-      userModel.password = passwordEncriptada
+      UserModel.password = passwordEncriptada
   
-      userModel.findOne({ usuario: userModel.usuario }, (err, userFound) => {
+      userModel.findOne({ usuario: UserModel.usuario }, (err, userFound) => {
         if (err) return res.status(404).send({ report: 'Error al encontrar usuario' });
         if (userFound) return res.status(202).send({ report: 'Este usuario ya existe' })
   
-        userModel.save((err, userSaved) => {
+        UserModel.save((err, userSaved) => {
           if (err) return res.status(404).send({ report: 'Error al guardar el Usuario' });
           return res.status(200).send(userSaved)
         })
       })
   
     })
+    return res.status(404).send({report:'No tienes los permisos necesarios'})}
   }
 
 function mostrarUsuarios(req,res) {
     var tipo = req.user.tipo;
   
-   if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+   if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
     userModel.find({},(err,UserFound)=>{
       if(err) return res.status(404).send({report:'Error al encontrar usuarios'});
       return res.status(200).send(UserFound)
@@ -80,7 +80,7 @@ function editarUsuario(req,res){
     var params = req.body
     var tipo = req.user.tipo;
   
-    if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+    if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
 
     userModel.findByIdAndUpdate(idUser,params,(err,userUpdated)=>{
       if(err) return res.status(500).send({ report: 'Error en la petición' })
@@ -95,7 +95,7 @@ function eliminarUsuario(req,res){
     var idUser = req.params.idUser
     var tipo = req.user.tipo;
   
-    if(tipo != administrador) return res.status(404).send({report:'No tienes los permisos necesarios'})
+    if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
   
     userModel.findByIdAndDelete(idUser, (err,userDeleted)=>{
       if(err) return res.status(500).send({ report: 'Error en la petición' })

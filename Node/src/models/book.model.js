@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BookSchema = Schema({
+    tipo: String,
     autor: String,
     titulo: String,
     edicion: String,

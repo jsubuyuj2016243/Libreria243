@@ -14,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-//[carga de rutas]
+app.use(cors());
+
+
 app.use('/api',
 user_rutes,);
-
-app.use(cors());
 
 
 module.exports = app;
