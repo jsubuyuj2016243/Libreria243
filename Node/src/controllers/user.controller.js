@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt-nodejs");
 const userModel = require("../models/user.model");
 const bookModel = require("../models/book.model");
 
-const administrador ='admin'
+const admin ='admin'
 const usuario = 'estudiante';
 const bibliotecario = 'bibliotecario';
 
@@ -36,8 +36,6 @@ function crearUsuario(req, res) {
   var params = req.body;
   var UserModel = new userModel();
   
-    if(type != admin){
-  
     UserModel.carnet = params.carnet;
     UserModel.nombre = params.nombre;
     UserModel.apellido = params.apellido;
@@ -62,13 +60,11 @@ function crearUsuario(req, res) {
       })
   
     })
-    return res.status(404).send({report:'No tienes los permisos necesarios'})}
   }
 
 function mostrarUsuarios(req,res) {
     var tipo = req.user.tipo;
   
-   if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
     userModel.find({},(err,UserFound)=>{
       if(err) return res.status(404).send({report:'Error al encontrar usuarios'});
       return res.status(200).send(UserFound)
