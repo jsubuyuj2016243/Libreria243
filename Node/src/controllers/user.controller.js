@@ -74,12 +74,10 @@ function mostrarUsuarios(req,res) {
 function editarUsuario(req,res){
     var idUser = req.params.idUser
     var params = req.body
-    var tipo = req.user.tipo;
-  
-    if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
 
     userModel.findByIdAndUpdate(idUser,params,(err,userUpdated)=>{
-      if(err) return res.status(500).send({ report: 'Error en la petición' })
+      if(err) res.status(500).send({ report: 'Error en la petición' })
+      console.log(err)
       if(userUpdated == null) return res.status(500).send({ report: 'No se actualizo el usuario'})
   
       return res.status(200).send(userUpdated)

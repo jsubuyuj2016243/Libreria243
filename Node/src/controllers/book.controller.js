@@ -6,6 +6,8 @@ const bcrypt = require("bcrypt-nodejs");
 const userModel = require("../models/user.model");
 const bookModel = require("../models/book.model");
 
+const libro = 'libro'
+
 function crearLibro(req, res) {
     var params = req.body;
     var BookModel = new bookModel();
@@ -42,7 +44,6 @@ function crearLibro(req, res) {
 function mostrarLibro(req,res) {
       var tipo = req.user.tipo;
     
-     if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
       bookModel.find({},(err,bookFound)=>{
         if(err) return res.status(404).send({report:'Error al encontrar libros'});
         return res.status(200).send(bookFound)
@@ -52,9 +53,6 @@ function mostrarLibro(req,res) {
 function editarLibro(req,res){
       var idBook = req.params.idBook
       var params = req.body
-      var tipo = req.user.tipo;
-    
-      if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
   
       bookModel.findByIdAndUpdate(idBook,params,(err,bookUpdated)=>{
         if(err) return res.status(500).send({ report: 'Error en la petición' })
@@ -68,8 +66,6 @@ function editarLibro(req,res){
 function eliminarLibro(req,res){
       var idBook = req.params.idBook
       var tipo = req.user.tipo;
-    
-      if(tipo != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})
     
       bookModel.findByIdAndDelete(idBook, (err,bookDeleted)=>{
         if(err) return res.status(500).send({ report: 'Error en la petición' })
