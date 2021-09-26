@@ -8,30 +8,29 @@ const bookModel = require("../models/book.model");
 
 function crearLibro(req, res) {
     var params = req.body;
-    var bookModel = new bookModel();
+    var BookModel = new bookModel();
     var tipo = req.params.tipo
-    var type = req.user.tipo;
-    
-    if(type != admin) return res.status(404).send({report:'No tienes los permisos necesarios'})    
-      bookModel.autor = params.autor;
-      bookModel.titulo = params.titulo;
-      bookModel.edicion = params.edicion;
-      bookModel.claves = params.claves;
-      bookModel.descripcion = params.descripcion;
-      bookModel.temas = params.temas;
-      bookModel.copias = params.copias;
-      bookModel.disponibles = params.disponibles;
+
+      BookModel.tipo = params.tipo    
+      BookModel.autor = params.autor;
+      BookModel.titulo = params.titulo;
+      BookModel.edicion = params.edicion;
+      BookModel.claves = params.claves;
+      BookModel.descripcion = params.descripcion;
+      BookModel.temas = params.temas;
+      BookModel.copias = params.copias;
+      BookModel.disponibles = params.disponibles;
     
       if (tipo != libro) {
-        bookModel.frecuencia = params.frecuencia;
-        UserModel.ejemplares = params.ejemplares;
+        BookModel.frecuencia = params.frecuencia;
+        BookModel.ejemplares = params.ejemplares;
       }
     
         bookModel.findOne({ titulo: bookModel.titulo }, (err, bookFound) => {
           if (err) return res.status(404).send({ report: 'Error al encontrar un libro' });
           if (bookFound) return res.status(202).send({ report: 'Este libro ya existe' })
     
-          bookModel.save((err, bookSaved) => {
+          BookModel.save((err, bookSaved) => {
             if (err) return res.status(404).send({ report: 'Error al guardar el Libro/Revista' });
             return res.status(200).send(bookSaved)
           })

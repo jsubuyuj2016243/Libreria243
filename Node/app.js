@@ -8,6 +8,7 @@ const cors = require("cors")
 
 //[rutas]
 const user_rutes = require("./src/rutes/user.rutes");
+const book_rutes = require("./src/rutes/book.rutes");
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,7 +19,7 @@ app.use(cors());
 
 
 app.use('/api',
-user_rutes,);
+user_rutes,book_rutes);
 
 
 module.exports = app;
