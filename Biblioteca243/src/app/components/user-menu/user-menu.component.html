@@ -7,7 +7,7 @@
 			<figcaption class="card__caption">
 				<h2 class="card__title">Prestar Libro/Revista</h2>
 				<p class="card__snippet">Aquí puedes ver los libros o revistas disponibles y solicitar préstamos.</p>
-				<a href="" class="card__button">Ir</a>
+				<a href="" class="card__button" [routerLink]="['/prestamo']" routerLinkActive="router-link-active">Ir</a>
 			</figcaption>
 		</figure>
 	</div>
@@ -18,7 +18,7 @@
 			<figcaption class="card__caption">
 				<h2 class="card__title">Devolver Libro/Revista</h2>
 				<p class="card__snippet">Aquí puedes devolver todos los libros o revistas que hayas prestado con anterioridad.</p>
-				<a href="" class="card__button">Ir</a>
+				<a href="" class="card__button" [routerLink]="['/devolucion']" routerLinkActive="router-link-active">Ir</a>
 			</figcaption>
 		</figure>
 	</div>
@@ -29,7 +29,7 @@
 			<figcaption class="card__caption">
 				<h2 class="card__title">Historial de préstamos</h2>
 				<p class="card__snippet">Aquí puedes ver el historial con toda la bibliografía que has leído aquí.</p>
-				<a href="" class="card__button">Ir</a>
+				<a href="" class="card__button" [routerLink]="['/historial']" routerLinkActive="router-link-active">Ir</a>
 			</figcaption>
 		</figure>
 	</div>
