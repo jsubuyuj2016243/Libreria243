@@ -3,13 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { CONNECTION } from '../global'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user.model'
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestUserService {
+export class RestBookService {
   public headers = new HttpHeaders().set('Content-Type',  'application/json');
   public uri:string;
   public httpOptions ={
@@ -25,7 +23,7 @@ export class RestUserService {
     })
   }
 
-  public user;
+  public book;
   public token;
 
   private extractData(res: Response){
@@ -39,14 +37,14 @@ export class RestUserService {
     this.uri = CONNECTION.URI;
   }
 
-  getUser(){
-    let user = JSON.parse(localStorage.getItem('user'));
-    if(user != undefined || user != null){
-      this.user = user
+  getBook(){
+    let book = JSON.parse(localStorage.getItem('book'));
+    if(book != undefined || book != null){
+      this.book = book
     }else{
-      this.user = null;
+      this.book = null;
     }
-    return this.user;
+    return this.book;
   }
 
   getToken(){
@@ -59,14 +57,8 @@ export class RestUserService {
     return this.token;
   }
 
-  login(user):Observable<any>{
-    let params = JSON.stringify(user)
-    return this.http.post(this.uri + 'Login', params, this.httpOptions)
-      .pipe(map(this.extractData));
-  }
-
-  saveUser(user){
-    let params = JSON.stringify(user);
+  saveBook(book){
+    let params = JSON.stringify(book);
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.getToken()
@@ -74,21 +66,4 @@ export class RestUserService {
     return this.http.post(this.uri + 'crearUsuario', params, {headers:headers})
       .pipe(map(this.extractData));
   }
-
-  updateUser(user){
-    let params = JSON.stringify(user);
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    });
-    return this.http.put(this.uri + 'editarUsuario', params, {headers:headers})
-      .pipe(map(this.extractData));
-  }
-
-  showUser():Observable<any>{
-
-    return this.http.get(this.uri + '/mostrarUsuarios', {headers: this.headers})
-  }
-
-
 }

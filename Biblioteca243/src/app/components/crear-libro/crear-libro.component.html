@@ -1,56 +1,56 @@
 <body>
     <div class="center">
         <h1>Nuevo Libro/Revista</h1>
-        <form>
+        <form #createbook="ngForm" (ngSubmit)="saveBook()">
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.autor" name="autor" type="text" required="required">
             <span>Autor</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.titulo" name="titulo" type="text" required="required">
             <span>Titulo</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.edicion" name="edicion" type="text" required="required">
             <span>Edicion</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.descripcion" name="descripcion" type="text" required="required">
             <span>Descripcion</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.temas" name="temas" type="text" required="required">
             <span>Temas</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.claves" name="claves" type="text" required="required">
             <span>Palabras clave</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.copias" name="copias" type="text" required="required">
             <span>Copias</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.disponibles" name="disponibles" type="text" required="required">
             <span>Disponibles</span>
           </div>
           <div class="box inputbox" >
-            <select>
+            <select [(ngModel)]="book.tipo" name="tipo">
               <option>- Tipo -</option>
               <option>Libro</option>
               <option>Revista</option>
             </select>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.frecuencia" name="frecuencia" type="text" required="required">
             <span>Frecuencia</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input [(ngModel)]="book.ejemplares" name="ejemplares" type="text" required="required">
             <span>Ejemplares</span>
           </div>
           <div class="inputbox">
-            <input type="button" value="Crear">
+            <input type="submit" value="Crear">
           </div>
         </form>
       </div>
