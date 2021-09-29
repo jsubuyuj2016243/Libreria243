@@ -10,7 +10,9 @@ var UserSchema = Schema({
     usuario: String,
     correo: String,
     password: String,
-    tipo: String
+    tipo: String,
+    Libros: [{type: Schema.ObjectId, ref:'Book'}],
+    Historial: [{type: Schema.ObjectId, ref:'Book'}]
 })
 
 module.exports = mongoose.model('User', UserSchema);

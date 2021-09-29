@@ -1,37 +1,37 @@
 <body>
 <div class="center">
     <h1>Nuevo Usuario</h1>
-    <form>
+    <form #register="ngForm" (ngSubmit)="saveUser()">
       <div class="inputbox">
-        <input type="text" required="required">
-        <span>ID</span>
+        <input [(ngModel)]="user.carnet" name="carnet" type="text" required="required">
+        <span>Carnet/CUI</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.nombre" name="nombre" type="text" required="required">
         <span>Nombre</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.apellido" name="apellido" type="text" required="required">
         <span>Apellido</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.usuario" name="usuario" type="text" required="required">
         <span>Usuario</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.correo" name="correo" type="email" required="required">
         <span>Correo</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.tipo" name="tipo" type="text" required="required">
         <span>Rol</span>
       </div>
       <div class="inputbox">
-        <input type="text" required="required">
+        <input [(ngModel)]="user.password" name="password" type="password" required="required">
         <span>Contraseña</span>
       </div>
       <div class="inputbox">
-        <input type="button" value="Crear">
+        <input type="submit" value="Crear">
       </div>
     </form>
   </div>

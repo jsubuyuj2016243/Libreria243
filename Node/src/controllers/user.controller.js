@@ -55,7 +55,7 @@ function crearUsuario(req, res) {
   
         UserModel.save((err, userSaved) => {
           if (err) return res.status(404).send({ report: 'Error al guardar el Usuario' });
-          return res.status(200).send(userSaved)
+          return res.status(200).send({report: 'Usuario creado', userSaved})
         })
       })
   
