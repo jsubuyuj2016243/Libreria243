@@ -10,8 +10,7 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 })
 export class UsuariosComponent implements OnInit {
   User:User
-  usuarios:[] 
-
+  usuarios;
 
   constructor( public userService: RestUserService) {
     this.User =  new User('',null,'','','','','','',[],[]);

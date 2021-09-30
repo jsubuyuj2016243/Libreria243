@@ -2,7 +2,7 @@
     <span><a [routerLink]="['/crearLibro']" routerLinkActive="router-link-active"></a></span>
 
   <div class="container">
-	<table>
+	<table *ngFor="let book of libros">
 		<thead>
 			<tr>
 				<th>Autor</th>
@@ -17,13 +17,13 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>JK Rowling</td>
-				<td>Harry Potter y la cámara secreta</td>
-				<td>Primera</td>
-				<td>Magia, Harry</td>
-                <td>Autosuperación, Agradecimiento</td>
-                <td>10</td>
-                <td>10</td>
+				<td>{{book.autor}}</td>
+				<td>{{book.titulo}}</td>
+				<td>{{book.edicion}}</td>
+				<td>{{book.claves}}</td>
+                <td>{{book.temas}}</td>
+                <td>{{book.copias}}</td>
+                <td>{{book.disponibles}}</td>
                 <td><button class="style-5" [routerLink]="['/editarLibro']" routerLinkActive="router-link-active">📝</button>
                     <button class="style-2">💣</button>
                     <button class="style-3">🧿</button>

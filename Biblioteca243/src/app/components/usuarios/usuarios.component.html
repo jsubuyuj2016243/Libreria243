@@ -1,8 +1,9 @@
 <body>
     <span><a [routerLink]="['/crearUsuario']" routerLinkActive="router-link-active"></a></span>
+</body>
 
   <div class="container">
-	<table>
+	<table *ngFor="let user of usuarios">
 		<thead>
 			<tr>
 				<th>Carnet/CUI</th>
@@ -16,12 +17,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>001</td>
-				<td>Juan</td>
-				<td>Gómez</td>
-				<td>juanGo</td>
-				<td>juangomez@gmail.com</td>
-                <td>Estudiante</td>
+				<td>{{user.carnet}}</td>
+				<td>{{user.nombre}}</td>
+				<td>{{user.apellido}}</td>
+				<td>{{user.usuario}}</td>
+				<td>{{user.correo}}</td>
+                <td>{{user.tipo}}</td>
                 <td><button [routerLink]="['/editarUsuario']" routerLinkActive="router-link-active" class="style-5">📝</button>
                     <button class="style-2">💣</button>
                 </td>
@@ -29,4 +30,3 @@
 		</tbody>
 	</table>
 </div>
-</body>

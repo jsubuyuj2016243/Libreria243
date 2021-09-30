@@ -86,8 +86,11 @@ export class RestUserService {
   }
 
   showUser():Observable<any>{
-
-    return this.http.get(this.uri + '/mostrarUsuarios', {headers: this.headers})
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.get(this.uri + '/mostrarUsuarios', {headers:headers})
   }
 
 

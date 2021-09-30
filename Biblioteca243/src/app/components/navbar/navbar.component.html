@@ -32,20 +32,23 @@
                 </li>
                 <li class="has-subnav">
                     <a>
-                       <i class="fa fa-folder-open fa-2x"></i>
-                        <span class="nav-text" (click)="logOut()" routerLinkActive="router-link-active">
-                            Cerrar sesión
-                        </span>
-                    </a>
-                </li>
-                <li class="has-subnav">
-                    <a>
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text" [routerLink]="['/adminAcc']" routerLinkActive="router-link-active">
                             Acciones del Administrador
                         </span>
                     </a>
             </ul>
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span (click)="logOut()" routerLinkActive="router-link-active" class="nav-text">
+                            Cerrar sesión
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+
         </nav>
   </body>
     </html>

@@ -58,7 +58,8 @@ span a:hover{
 
 .container {
 	position: absolute;
-	top: 50%;
+  float: initial;
+  top: 55%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
