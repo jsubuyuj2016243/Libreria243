@@ -100,10 +100,23 @@ function eliminarUsuario(req,res){
   
   }
 
+function buscarUsuarioID(req, res){
+    var idUser = req.params.idUser;
+
+    userModel.findById(idUser, (err, userFound)=>{
+        if(err) return res.status(500).send({mensaje: 'Error en la petición'})
+        if(!userFound) return res.status(500).send({mensaje: 'No se pudo encontrar al usuario'})
+
+        return res.status(200).send(userFound)
+    })
+
+}
+
   module.exports = {
       Login,
       crearUsuario,
       mostrarUsuarios,
       editarUsuario,
-      eliminarUsuario
+      eliminarUsuario,
+      buscarUsuarioID
   }

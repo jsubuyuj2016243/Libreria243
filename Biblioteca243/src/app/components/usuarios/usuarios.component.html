@@ -24,7 +24,7 @@
 				<td>{{user.correo}}</td>
                 <td>{{user.tipo}}</td>
                 <td><button [routerLink]="['/editarUsuario']" routerLinkActive="router-link-active" class="style-5">📝</button>
-                    <button class="style-2">💣</button>
+                    <button class="style-2" (click)="seguridadEliminar(user._id)">💣</button>
                 </td>
 			</tr>
 		</tbody>

@@ -12,22 +12,14 @@ export class BooksComponent implements OnInit {
   Book:Book
   libros;
 
-  constructor( public bookService = RestBookService) {
-    this.Book = new Book('','','','','','','',null,null,'','')
+  constructor() {
+
    }
 
   ngOnInit(): void {
-    this.showBook()
+
   }
 
-  showBook(){
-    this.bookService.showBook().subscribe(
-      response =>{
-        console.log(response);
-        this.libros = response;
-        console.log(this.Book)
-      }
-    )
-  }
+ 
 
 }

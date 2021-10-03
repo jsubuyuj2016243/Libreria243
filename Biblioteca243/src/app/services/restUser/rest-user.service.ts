@@ -12,6 +12,8 @@ import { User } from '../../models/user.model'
 export class RestUserService {
   public headers = new HttpHeaders().set('Content-Type',  'application/json');
   public uri:string;
+  public user;
+  public token;
   public httpOptions ={
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,9 +26,6 @@ export class RestUserService {
       'Authorization' : this.getToken()
     })
   }
-
-  public user;
-  public token;
 
   private extractData(res: Response){
     let body = res;
@@ -75,14 +74,11 @@ export class RestUserService {
       .pipe(map(this.extractData));
   }
 
-  updateUser(user){
-    let params = JSON.stringify(user);
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    });
-    return this.http.put(this.uri + 'editarUsuario', params, {headers:headers})
-      .pipe(map(this.extractData));
+  updateUser(idUser, usuario: User):Observable<any>{
+    let params = JSON.stringify(usuario)
+    let token = this.headers.set('Authorization', this.getToken())
+
+    return this.http.put(this.uri + 'editarUsuario/' + idUser, params, {headers: token})
   }
 
   showUser():Observable<any>{
@@ -93,5 +89,13 @@ export class RestUserService {
     return this.http.get(this.uri + '/mostrarUsuarios', {headers:headers})
   }
 
+  deleteUser(idUser):Observable<any>{
+    let token = this.headers.set('Authorization' , this.getToken())
 
+     return this.http.delete(this.uri + '/eliminarUsuario/' + idUser, {headers: token})
+   }
+
+   buscarUsuarioID(idUser):Observable<any>{
+    return this.http.get(this.uri + '/buscarUsuarioID/'+ idUser, {headers: this.headers} )
+   }
 }

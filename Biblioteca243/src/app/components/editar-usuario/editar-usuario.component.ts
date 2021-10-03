@@ -12,30 +12,38 @@ export class EditarUsuarioComponent implements OnInit {
   public user:User;
   public usuario;
   public token;
+  public userUpdated: User;
 
-  constructor(private restUser:RestUserService, private router:Router) {
+  constructor(public restUser:RestUserService, public router:Router) {
     this.usuario = restUser.getUser();
     this.token = restUser.getToken();
     this.user = new User('',null,'','','','','','',[],[]);
+    this.userUpdated = new User('',null,'','','','','','',[],[]);
   }
 
 
   ngOnInit(): void {
+  this.showUser()
   }
 
-  updateUser(){
-    this.restUser.updateUser(this.user).subscribe((res:any)=>{
-      if(res.userUpdated){
-        alert(res.report);
-        this.user = new User('',null,'','','','','','',[],[]);
-        this.router.navigateByUrl('userMenu');    
-      }else{
-        alert(res.report);
+  showUser(){
+    this.restUser.showUser().subscribe(
+      response =>{
+        console.log(response);
+        this.user = response;
+        console.log(this.user);
       }
-    },
-    (error:any) => alert(error.error.report)
     )
   }
 
+
+  updateUser(){
+    this.restUser.updateUser(this.userUpdated._id, this.userUpdated).subscribe(
+      response =>{
+        console.log(response);
+        this.showUser()
+      }
+    )
+  }
 
 }
