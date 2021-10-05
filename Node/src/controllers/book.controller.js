@@ -76,9 +76,22 @@ function eliminarLibro(req,res){
     
     }
 
+    function buscarLibroID(req, res){
+      var idBook = req.params.idBook;
+  
+      bookModel.findById(idBook, (err, bookFound)=>{
+          if(err) return res.status(500).send({mensaje: 'Error en la petición'})
+          if(!bookFound) return res.status(500).send({mensaje: 'No se pudo encontrar el libro'})
+  
+          return res.status(200).send(bookFound)
+      })
+  
+  }
+
 module.exports = {
         crearLibro,
         mostrarLibro,
         editarLibro,
-        eliminarLibro
+        eliminarLibro,
+        buscarLibroID
     }

@@ -1,5 +1,6 @@
 export class Book{
     constructor(
+        public _id: string,
         public tipo: String,
         public autor: String,
         public titulo: String,

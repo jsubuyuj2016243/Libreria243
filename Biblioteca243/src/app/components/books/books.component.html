@@ -25,7 +25,7 @@
                 <td>{{book.copias}}</td>
                 <td>{{book.disponibles}}</td>
                 <td><button class="style-5" [routerLink]="['/editarLibro']" routerLinkActive="router-link-active">📝</button>
-                    <button class="style-2">💣</button>
+                    <button class="style-2" (click)="seguridadEliminar(book._id)">💣</button>
                     <button class="style-3">🧿</button>
                 </td>
 			</tr>

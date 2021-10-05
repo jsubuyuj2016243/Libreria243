@@ -8,9 +8,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestBookService {
-  static showBook() {
-    throw new Error('Method not implemented.');
-  }
   public headers = new HttpHeaders().set('Content-Type',  'application/json');
   public uri:string;
   public httpOptions ={
@@ -78,4 +75,13 @@ export class RestBookService {
     return this.http.get(this.uri + '/mostrarLibro', {headers:headers})
   }
 
+  deleteBook(idBook):Observable<any>{
+    let token = this.headers.set('Authorization' , this.getToken())
+
+     return this.http.delete(this.uri + '/eliminarLibro/' + idBook, {headers: token})
+   }
+
+   buscarLibroID(idBook):Observable<any>{
+    return this.http.get(this.uri + '/buscarLibroID/'+ idBook, {headers: this.headers} )
+   }
 }

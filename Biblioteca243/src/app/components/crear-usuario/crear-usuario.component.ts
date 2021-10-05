@@ -27,7 +27,7 @@ export class CrearUsuarioComponent implements OnInit {
       if(res.userSaved){
         alert(res.report);
         this.user = new User('',null,'','','','','','',[],[]);
-        this.router.navigateByUrl('userMenu');    
+        this.router.navigateByUrl('users');    
       }else{
         alert(res.report);
       }

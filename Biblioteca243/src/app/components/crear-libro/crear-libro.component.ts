@@ -16,7 +16,7 @@ export class CrearLibroComponent implements OnInit {
   constructor(private restBook:RestBookService, private router:Router) {
     this.libro = restBook.getBook();
     this.token = restBook.getToken();
-    this.book = new Book('','','','','','','',null,null,'','')
+    this.book = new Book('','','','','','','','',null,null,'','')
    }
 
   ngOnInit(): void {
@@ -26,8 +26,8 @@ export class CrearLibroComponent implements OnInit {
     this.restBook.saveBook(this.book).subscribe((res:any)=>{
       if(res.bookSaved){
         alert(res.report);
-        this.book = new Book('','','','','','','',null,null,'','');
-        this.router.navigateByUrl('userMenu');    
+        this.book = new Book('','','','','','','','',null,null,'','');
+        this.router.navigateByUrl('books');    
       }else{
         alert(res.report);
       }

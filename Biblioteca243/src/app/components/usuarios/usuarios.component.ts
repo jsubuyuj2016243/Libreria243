@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
   User:User
   usuarios;
-   idUser: User;
+  idUser: User;
 
   constructor( public userService: RestUserService) {
     this.User =  new User('',null,'','','','','','',[],[]);
