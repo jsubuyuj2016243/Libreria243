@@ -2,7 +2,7 @@
     <span><a [routerLink]="['/crearLibro']" routerLinkActive="router-link-active"></a></span>
 
   <div class="container">
-	<table *ngFor="let book of libros">
+	<table>
 		<thead>
 			<tr>
 				<th>Autor</th>
@@ -15,7 +15,7 @@
                 <th class="acciones">Acciones</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody *ngFor="let book of libros">
 			<tr>
 				<td>{{book.autor}}</td>
 				<td>{{book.titulo}}</td>

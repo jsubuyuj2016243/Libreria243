@@ -32,8 +32,6 @@ export class RestUserService {
     return body || [] || {};
   }
 
-
-
   constructor(private http: HttpClient) {
     this.uri = CONNECTION.URI;
   }
@@ -74,11 +72,11 @@ export class RestUserService {
       .pipe(map(this.extractData));
   }
 
-  updateUser(idUser, usuario: User):Observable<any>{
+  updateUser(idUser,usuario:User):Observable<any>{
+    let headers = this.headers.set('Authorization', this.getToken())
     let params = JSON.stringify(usuario)
-    let token = this.headers.set('Authorization', this.getToken())
 
-    return this.http.put(this.uri + 'editarUsuario/' + idUser, params, {headers: token})
+    return this.http.put(this.uri + '/editarUsuario/'+idUser, params, {headers:headers})
   }
 
   showUser():Observable<any>{

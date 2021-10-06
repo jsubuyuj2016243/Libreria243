@@ -58,8 +58,7 @@ export class BooksComponent implements OnInit {
           if (result.isConfirmed) {
             this.deleteBook(this.idBook._id)
             Swal.fire(
-              'El usuario a sido eliminado exitosamente',
-              'success'
+              'El libro a sido eliminado exitosamente',
             )
           }
         })
